@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+E:\JAVA\BulletinBoard\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+179041315.index
