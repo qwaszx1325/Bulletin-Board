@@ -19,4 +19,43 @@ public class BulletinBoard {
 	private LocalDateTime endDate;
 	private String publisher;
 	private String content;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public LocalDateTime getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
+	}
+	public LocalDateTime getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	
 }
