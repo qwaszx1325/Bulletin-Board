@@ -8,11 +8,11 @@ public class PageResult<T> {
 
 	private List<T> data;
 	private Integer totalPages;
-	private Integer totalCount;
+	private Long totalCount;
 	private Integer currentPage;
 	
 	
-	public PageResult(List<T> data, Integer totalPages, Integer totalCount, Integer currentPage) {
+	public PageResult(List<T> data, Integer totalPages, Long totalCount, Integer currentPage) {
 		super();
 		this.data = data;
 		this.totalPages = totalPages;
@@ -33,10 +33,10 @@ public class PageResult<T> {
 	public void setTotalPages(Integer totalPages) {
 		this.totalPages = totalPages;
 	}
-	public Integer getTotalCount() {
+	public Long getTotalCount() {
 		return totalCount;
 	}
-	public void setTotalCount(Integer totalCount) {
+	public void setTotalCount(Long totalCount) {
 		this.totalCount = totalCount;
 	}
 	public Integer getCurrentPage() {

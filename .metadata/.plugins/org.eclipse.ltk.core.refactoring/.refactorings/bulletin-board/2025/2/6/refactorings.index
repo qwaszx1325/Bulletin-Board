@@ -6,3 +6,10 @@
 1738731817298	Extract local variable 'merge'
 1738731987392	Extract local variable 'bulletinBoard'
 1738741397404	Extract local variable 'config'
+1738827760660	Extract local variable 'pageResult'
+1738827791463	Extract local variable 'totalCount'
+1738870287523	Extract local variable 'allBulletinBoards'
+1738871783246	Delete element
+1738871893330	Extract local variable 'allBulletinBoards'
+1738871918935	Extract local variable 'data'
+1738872175769	Extract local variable 'bulletinBoardServiceImpl'

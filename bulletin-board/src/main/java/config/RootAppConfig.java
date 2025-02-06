@@ -24,7 +24,7 @@ public class RootAppConfig {
 	public DataSource dataSource() {
 		HikariConfig config = new HikariConfig();
 		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		config.setJdbcUrl("jdbc:mysql://localhost:3306/bulletin_bort?serverTimezone=Asia/Taipei");
+		config.setJdbcUrl("jdbc:mysql://localhost:3306/bulletin_board?serverTimezone=Asia/Taipei");
 		config.setUsername("root");
 		config.setPassword("root");
 		config.setMaximumPoolSize(10);           

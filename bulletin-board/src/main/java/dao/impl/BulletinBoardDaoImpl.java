@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +22,19 @@ public class BulletinBoardDaoImpl implements BulletinBoardDao {
 	private TransactionUtil transactionUtil;
 	
 	@Override
-	public List<BulletinBoard> findAllBulletinBoards(int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BulletinBoard> findAllBulletinBoards(int page ,int pageSize) {
+		
+		return transactionUtil.executeInTransaction(session -> {
+			Query<BulletinBoard> query = session.createQuery(
+		            "FROM BulletinBoard", 
+		            BulletinBoard.class
+		        );
+		        
+		        query.setFirstResult((page-1) * pageSize);
+		        query.setMaxResults(5);
+		        
+		        return query.list();
+		});
 	}
 
 	@Override
@@ -53,6 +64,17 @@ public class BulletinBoardDaoImpl implements BulletinBoardDao {
 			return false;
 		});
 		
+	}
+
+	@Override
+	public long getTotalCount() {
+		return transactionUtil.executeInTransaction(session -> {
+			Query<Long> query = session.createQuery(
+		            "SELECT COUNT(*) FROM BulletinBoard", 
+		            Long.class
+		        );
+		        return query.uniqueResult();
+		});
 	}
 
 	
