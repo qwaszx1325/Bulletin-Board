@@ -1,5 +1,7 @@
 package com.test.dao.impl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -39,7 +41,7 @@ public class BulletinBoardDaoImpl implements BulletinBoardDao {
 
 	@Override
 	public BulletinBoard createBulletinBoard(BulletinBoard bulletinBoard) {
-		
+		bulletinBoard.setPublishDate(LocalDate.now());
 		return transactionUtil.executeInTransaction(session ->{
 			session.persist(bulletinBoard);
 			return bulletinBoard;
@@ -75,6 +77,13 @@ public class BulletinBoardDaoImpl implements BulletinBoardDao {
 		        );
 		        return query.uniqueResult();
 		});
+	}
+
+	@Override
+	public BulletinBoard finBoardById(Integer id) {
+		return transactionUtil.executeInTransaction(session -> {
+	        return session.get(BulletinBoard.class, id);
+	    });
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.test.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -17,12 +18,14 @@ public class BulletinBoard {
 	private Integer id;
 	private String title;
 	@Column(name = "start_date")
-	private LocalDateTime startDate;
+	private LocalDate startDate;
 	@Column(name = "end_date")
-	private LocalDateTime endDate;
+	private LocalDate endDate;
+	@Column(name = "publish_date")  
+    private LocalDate publishDate;
 	private String publisher;
+	@Column(columnDefinition = "LONGTEXT")
 	private String content;
-	
 	public Integer getId() {
 		return id;
 	}
@@ -35,17 +38,23 @@ public class BulletinBoard {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public LocalDateTime getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-	public LocalDateTime getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+	public LocalDate getPublishDate() {
+		return publishDate;
+	}
+	public void setPublishDate(LocalDate publishDate) {
+		this.publishDate = publishDate;
 	}
 	public String getPublisher() {
 		return publisher;
@@ -59,6 +68,8 @@ public class BulletinBoard {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
 	
 	
 }

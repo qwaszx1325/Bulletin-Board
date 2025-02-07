@@ -11,6 +11,7 @@ import com.test.entity.BulletinBoard;
 public interface BulletinBoardService {
 
 	public PageResult<BulletinBoard> findAllBulletinBoards(int page);
+	public BulletinBoard finBoardById(Integer id);
 	public BulletinBoard createBulletinBoard(BulletinBoard bulletinBoard);
 	public BulletinBoard updateBulletinBoard(BulletinBoard bulletinBoard);
 	public boolean deleteBulletinBoard(Integer id);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oracle.wls.shaded.org.apache.regexp.recompile;
 import com.test.dao.BulletinBoardDao;
 import com.test.dto.PageResult;
 import com.test.entity.BulletinBoard;
@@ -53,5 +54,10 @@ public class BulletinBoardServiceImpl implements BulletinBoardService{
 	@Override
 	public boolean deleteBulletinBoard(Integer id) {
 		return bulletinBoardDao.deleteBulletinBoaed(id);
+	}
+
+	@Override
+	public BulletinBoard finBoardById(Integer id) {
+		return bulletinBoardDao.finBoardById(id);
 	}
 }
