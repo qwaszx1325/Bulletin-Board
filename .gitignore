@@ -1,1 +1,29 @@
-/.metadata/
+# Eclipse 專案設定
+.metadata/
+.settings/
+.project
+.classpath
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# Servers 資料夾
+Servers/
+
+# Build 產生的檔案
+target/
+build/
+out/
+
+# IDE 特定檔案
+.idea/
+*.iml
+.vscode/
+
+# 其他常見需要忽略的檔案
+.DS_Store
+Thumbs.db
