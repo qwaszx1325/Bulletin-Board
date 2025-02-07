@@ -13,3 +13,7 @@
 1738871893330	Extract local variable 'allBulletinBoards'
 1738871918935	Extract local variable 'data'
 1738872175769	Extract local variable 'bulletinBoardServiceImpl'
+1738897533556	Extract local variable 'bulletinBoard'
+1738897552934	Extract local variable 'bulletinBoard2'
+1738897966804	Extract local variable 'deleteBulletinBoaed'
+1738898062012	Extract local variable 'bulletinBoard'
