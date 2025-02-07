@@ -17,3 +17,8 @@
 1738897552934	Extract local variable 'bulletinBoard2'
 1738897966804	Extract local variable 'deleteBulletinBoaed'
 1738898062012	Extract local variable 'bulletinBoard'
+1738904633998	Extract local variable 'allBulletinBoards'
+1738906978774	Copy package
+1738906987025	Delete element
+1738907438768	Copy folder
+1738907456074	Copy package
