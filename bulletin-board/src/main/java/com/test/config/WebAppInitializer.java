@@ -24,7 +24,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	}
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
-	    String location = new java.io.File(System.getProperty("catalina.base"), "wtpwebapps/ROOT/WEB-INF/uploads").getAbsolutePath();
+	    String location = new java.io.File(System.getProperty("catalina.base"), "wtpwebapps/buulletin-board/WEB-INF/uploads").getAbsolutePath();
 	    
 	    new java.io.File(location).mkdirs();
 	    

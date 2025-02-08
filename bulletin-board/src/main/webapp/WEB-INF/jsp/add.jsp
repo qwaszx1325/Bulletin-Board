@@ -1,78 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>新增公告</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tiny.cloud/1/6st0qrkyk3zq5hfpjm3p00vv2hqbit50u96ez82udc5s9ob3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tinymce-i18n@23.7.24/langs5/zh_TW.min.js"></script>
-    <style>
-        .error-message {
-            color: red;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>新增公告</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="/bulletin-board/js/tinymce/tinymce.min.js"></script>
+<style>
+.error-message {
+	color: red;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+</style>
 </head>
 <body>
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="mb-0">新增公告</h2>
-                </div>
-                <div class="card-body">
-                    <form action="/ROOT/createBoard" method="post" id="bulletinForm" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">標題</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                            <div class="error-message" id="titleError"></div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="publisher" class="form-label">發布者</label>
-                            <input type="text" class="form-control" id="publisher" name="publisher" required>
-                            <div class="error-message" id="publisherError"></div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="startDate" class="form-label">開始日期</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate" required>
-                                <div class="error-message" id="startDateError"></div>
-                            </div>
-                            
-                            <div class="col-md-6 mb-3">
-                                <label for="endDate" class="form-label">結束日期</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate" required>
-                                <div class="error-message" id="endDateError"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="content" class="form-label">內容</label>
-                            <textarea id="content" name="content"></textarea>
-                            <div class="error-message" id="contentError"></div>
-                        </div>
-                        
-                        <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-primary mx-2">送出</button>
-                            <a href="/ROOT/home" class="btn btn-secondary mx-2">返回</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-header">
+						<h2 class="mb-0">新增公告</h2>
+					</div>
+					<div class="card-body">
+						<form action="/bulletin-board/createBoard" method="post"
+							id="bulletinForm" enctype="multipart/form-data">
+							<div class="mb-3">
+								<label for="title" class="form-label">標題</label> <input
+									type="text" class="form-control" id="title" name="title"
+									required>
+								<div class="error-message" id="titleError"></div>
+							</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+							<div class="mb-3">
+								<label for="publisher" class="form-label">發布者</label> <input
+									type="text" class="form-control" id="publisher"
+									name="publisher" required>
+								<div class="error-message" id="publisherError"></div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="startDate" class="form-label">開始日期</label> <input
+										type="date" class="form-control" id="startDate"
+										name="startDate" required>
+									<div class="error-message" id="startDateError"></div>
+								</div>
+
+								<div class="col-md-6 mb-3">
+									<label for="endDate" class="form-label">結束日期</label> <input
+										type="date" class="form-control" id="endDate" name="endDate"
+										required>
+									<div class="error-message" id="endDateError"></div>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="attachment" class="form-label">附件上傳</label> <input
+									type="file" class="form-control" id="attachment"
+									name="attachment">
+								<div class="form-text">支援的檔案格式: PDF, DOC, DOCX, XLS, XLSX
+									(最大 5MB)</div>
+								<div class="error-message" id="attachmentError"></div>
+							</div>
+
+							<div class="mb-3">
+								<label for="content" class="form-label">內容</label>
+								<textarea id="content" name="content"></textarea>
+								<div class="error-message" id="contentError"></div>
+							</div>
+
+							<div class="text-center mt-4">
+								<button type="submit" class="btn btn-primary mx-2">送出</button>
+								<a href="/bulletin-board/home" class="btn btn-secondary mx-2">返回</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
     tinymce.init({
         selector: '#content',
         language: 'zh_TW',
+        language_url: '/bulletin-board/js/tinymce/langs/zh_TW.js',
+        
         plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
@@ -105,6 +123,11 @@
 
     document.getElementById('bulletinForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const attachment = document.getElementById('attachment').files[0];
+        if (attachment && attachment.size > 5 * 1024 * 1024) {
+            document.getElementById('attachmentError').textContent = '檔案大小不能超過 5MB';
+            hasError = true;
+        }
         
         // 清除之前的錯誤訊息
         document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
@@ -154,6 +177,21 @@
         if (!hasError) {
             this.submit();
         }
+        if (attachment) {
+            const allowedTypes = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            ];
+            if (!allowedTypes.includes(attachment.type)) {
+                document.getElementById('attachmentError').textContent = '不支援的檔案格式';
+                hasError = true;
+            }
+        }
+        
+        
     });
 
     // 設定開始日期的最小值為今天

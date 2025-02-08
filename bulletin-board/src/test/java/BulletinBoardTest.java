@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import dto.PageResult;
-import entity.BulletinBoard;
-import service.BulletinBoardService;
-import service.impl.BulletinBoardServiceImpl;
+import com.test.dto.PageResult;
+import com.test.entity.BulletinBoard;
+import com.test.service.BulletinBoardService;
+import com.test.service.impl.BulletinBoardServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})

@@ -1,0 +1,197 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>編輯公告</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="/bulletin-board/js/tinymce/tinymce.min.js"></script>
+    
+<style>
+.error-message {
+	color: red;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+</style>
+</head>
+<body>
+	<div class="container mt-4">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-header">
+						<h2 class="mb-0">編輯公告</h2>
+					</div>
+					<div class="card-body">
+						<form action="/bulletin-board/updateBoard" method="post" id="bulletinForm"
+							enctype="multipart/form-data">
+							<input type="hidden" name="id" value="${bulletinBoard.id}">
+
+							<div class="mb-3">
+								<label for="title" class="form-label">標題</label> <input
+									type="text" class="form-control" id="title" name="title"
+									value="${bulletinBoard.title}" required>
+								<div class="error-message" id="titleError"></div>
+							</div>
+
+							<div class="mb-3">
+								<label for="publisher" class="form-label">發布者</label> <input
+									type="text" class="form-control" id="publisher"
+									name="publisher" value="${bulletinBoard.publisher}" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="publishDate" class="form-label">發布日期</label> <input
+									type="date" class="form-control" id="publishDate"
+									name="publishDate" value="${bulletinBoard.publishDate}"
+									readonly>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="startDate" class="form-label">開始日期</label> <input
+										type="date" class="form-control" id="startDate"
+										name="startDate" value="${bulletinBoard.startDate}" required>
+									<div class="error-message" id="startDateError"></div>
+								</div>
+
+								<div class="col-md-6 mb-3">
+									<label for="endDate" class="form-label">結束日期</label> <input
+										type="date" class="form-control" id="endDate" name="endDate"
+										value="${bulletinBoard.endDate}" required>
+									<div class="error-message" id="endDateError"></div>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="attachment" class="form-label">附件上傳</label> <input
+									type="file" class="form-control" id="attachment"
+									name="attachment">
+								<div class="form-text">支援的檔案格式: PDF, DOC, DOCX, XLS, XLSX
+									(最大 5MB)</div>
+								<div class="error-message" id="attachmentError"></div>
+							</div>
+
+							<div class="mb-3">
+								<label for="content" class="form-label">內容</label>
+								<textarea id="content" name="content">${bulletinBoard.content}</textarea>
+								<div class="error-message" id="contentError"></div>
+							</div>
+
+							<div class="text-center mt-4">
+								<button type="submit" class="btn btn-primary mx-2">更新</button>
+								<a href="/bulletin-board/home" class="btn btn-secondary mx-2">返回</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+   tinymce.init({
+       selector: '#content',
+       language: 'zh_TW',
+       language_url: '/bulletin-board/js/tinymce/langs/zh_TW.js',
+       
+       plugins: [
+           'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+           'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+           'insertdatetime', 'media', 'table', 'help', 'wordcount'
+       ],
+       toolbar: 'undo redo | blocks | ' +
+               'bold italic forecolor | alignleft aligncenter ' +
+               'alignright alignjustify | bullist numlist outdent indent | ' +
+               'removeformat | image | help',
+       menubar: 'file edit view insert format tools table help',
+       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+       height: 500,
+       images_upload_base64: true,
+       images_upload_handler: function (blobInfo, progress) {
+           return new Promise((resolve, reject) => {
+               const reader = new FileReader();
+               reader.readAsDataURL(blobInfo.blob());
+               reader.onload = () => {
+                   resolve(reader.result);
+               };
+               reader.onerror = (error) => reject(error);
+           });
+       },
+       setup: function(editor) {
+           editor.on('change', function() {
+               editor.save();
+           });
+       }
+   });
+
+   document.getElementById('bulletinForm').addEventListener('submit', function(e) {
+       e.preventDefault();
+       const attachment = document.getElementById('attachment').files[0];
+       if (attachment && attachment.size > 5 * 1024 * 1024) {
+           document.getElementById('attachmentError').textContent = '檔案大小不能超過 5MB';
+           hasError = true;
+       }
+       // 清除之前的錯誤訊息
+       document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+       
+       let hasError = false;
+       
+       // 驗證標題
+       const title = document.getElementById('title').value.trim();
+       if (!title) {
+           document.getElementById('titleError').textContent = '請輸入標題';
+           hasError = true;
+       }
+       
+       // 驗證日期
+       const startDate = document.getElementById('startDate').value;
+       const endDate = document.getElementById('endDate').value;
+       
+       if (!startDate) {
+           document.getElementById('startDateError').textContent = '請選擇開始日期';
+           hasError = true;
+       }
+       
+       if (!endDate) {
+           document.getElementById('endDateError').textContent = '請選擇結束日期';
+           hasError = true;
+       }
+       
+       if (startDate && endDate && startDate > endDate) {
+           document.getElementById('endDateError').textContent = '結束日期不能早於開始日期';
+           hasError = true;
+       }
+       
+       // 驗證內容
+       const content = tinymce.get('content').getContent().trim();
+       if (!content) {
+           document.getElementById('contentError').textContent = '請輸入內容';
+           hasError = true;
+       }
+       
+       if (attachment) {
+           const allowedTypes = [
+               'application/pdf',
+               'application/msword',
+               'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+               'application/vnd.ms-excel',
+               'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+           ];
+           if (!allowedTypes.includes(attachment.type)) {
+               document.getElementById('attachmentError').textContent = '不支援的檔案格式';
+               hasError = true;
+           }
+       }
+       
+       if (!hasError) {
+           this.submit();
+       }
+   });
+</script>
+</body>
+</html>

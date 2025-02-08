@@ -17,7 +17,7 @@
 
 		<!-- 新增公告按鈕 -->
 		<div class="mb-3">
-			<a href="/ROOT/add" class="btn btn-success">新增公告</a>
+			<a href="/bulletin-board/add" class="btn btn-success">新增公告</a>
 		</div>
 
 		<!-- 公告列表 -->
@@ -35,15 +35,15 @@
 			<tbody>
 				<c:forEach items="${bulletinBoard}" var="board">
 					<tr>
-						<td><a href="/ROOT/detail/${board.id}"
+						<td><a href="/bulletin-board/detail/${board.id}"
 							class="text-decoration-none text-primary"> ${board.title} </a></td>
 						<td>${board.publisher}</td>
 						<td>${board.publishDate}</td>
 						<td>${board.startDate}</td>
 						<td>${board.endDate}</td>
-						<td><a href="/ROOT/edit/${board.id}"
+						<td><a href="/bulletin-board/edit/${board.id}"
 							class="btn btn-primary btn-sm">修改</a> <a
-							href="/ROOT/delete/${board.id}" class="btn btn-danger btn-sm"
+							href="/bulletin-board/deleteBoard/${board.id}" class="btn btn-danger btn-sm"
 							onclick="return confirm('確定要刪除這則公告嗎？')">刪除</a></td>
 					</tr>
 				</c:forEach>
@@ -55,17 +55,17 @@
 			<ul class="pagination justify-content-center">
 				<c:if test="${currentPage > 1}">
 					<li class="page-item"><a class="page-link"
-						href="/ROOT/home?pageNumber=${currentPage-1}">上一頁</a></li>
+						href="/bulletin-board/home?pageNumber=${currentPage-1}">上一頁</a></li>
 				</c:if>
 
 				<c:forEach begin="1" end="${totalPage}" var="i">
 					<li class="page-item ${currentPage == i ? 'active' : ''}"><a
-						class="page-link" href="/ROOT/home?pageNumber=${i}">${i}</a></li>
+						class="page-link" href="/bulletin-board/home?pageNumber=${i}">${i}</a></li>
 				</c:forEach>
 
 				<c:if test="${currentPage < totalPage}">
 					<li class="page-item"><a class="page-link"
-						href="/ROOT/home?pageNumber=${currentPage+1}">下一頁</a></li>
+						href="/bulletin-board/home?pageNumber=${currentPage+1}">下一頁</a></li>
 				</c:if>
 			</ul>
 		</nav>

@@ -28,7 +28,7 @@ public class BulletinBoardDaoImpl implements BulletinBoardDao {
 		
 		return transactionUtil.executeInTransaction(session -> {
 			Query<BulletinBoard> query = session.createQuery(
-		            "FROM BulletinBoard", 
+		            "FROM BulletinBoard ORDER BY publishDate DESC", 
 		            BulletinBoard.class
 		        );
 		        
